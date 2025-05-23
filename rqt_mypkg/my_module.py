@@ -6,9 +6,6 @@ from PyQt5.QtCore import Qt
 import os
 from ament_index_python.packages import get_package_share_directory
 
-import threading
-import rclpy
-from rclpy.node import Node
 from std_msgs.msg import String
 
 
@@ -17,11 +14,7 @@ class MyPlugin(Plugin):
         super(MyPlugin, self).__init__(context)
         self.setObjectName('MyPlugin')
 
-        if not rclpy.ok():
-            rclpy.init(args=None)
-
-        self.node = Node('chatter_monitor_node')
-
+        self.node = context.node  # Use shared RQT node
         self._widget = MyWidget(self.node)
 
         if context.serial_number() > 1:
@@ -29,15 +22,8 @@ class MyPlugin(Plugin):
 
         context.add_widget(self._widget)
 
-        # Start executor in background thread
-        self.executor = rclpy.executors.SingleThreadedExecutor()
-        self.executor.add_node(self.node)
-        self.thread = threading.Thread(target=self.executor.spin, daemon=True)
-        self.thread.start()
-
     def shutdown_plugin(self):
-        self.executor.shutdown()
-        self.node.destroy_node()
+        pass  # No custom node to shut down
 
 
 class MyWidget(QWidget):
