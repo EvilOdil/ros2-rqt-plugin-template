@@ -1,0 +1,15 @@
+<library path="src">
+  <class name="My Plugin" type="rqt_mypkg.my_module.MyPlugin" base_class_type="rqt_gui_py::Plugin">
+    <description>
+      Hardware Interface of the Obo Dog 
+    </description>
+    <qtgui>
+      <group>
+        <label>Obo Dog Tools</label>
+      </group>
+      <label>Hardware Interface GUI</label>
+      <icon type="theme">system-help</icon>
+      <statustip>Great user interface to provide real value.</statustip>
+    </qtgui>
+  </class>
+</library>

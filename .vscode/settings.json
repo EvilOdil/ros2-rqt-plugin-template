@@ -1,0 +1,30 @@
+{
+    "python.autoComplete.extraPaths": [
+        "/home/odil/ros2_ws/build/my_rqt_plugin",
+        "/home/odil/ros2_ws/install/my_rqt_plugin/lib/python3.10/site-packages",
+        "/home/odil/ros2_ws/build/go2_robot_sdk",
+        "/home/odil/ros2_ws/install/go2_robot_sdk/lib/python3.10/site-packages",
+        "/home/odil/ros2_ws/install/unitree_go/local/lib/python3.10/dist-packages",
+        "/home/odil/ros2_ws/install/insta360_driver/lib/python3.10/site-packages",
+        "/home/odil/ros2_ws/install/insta360_cam/lib/python3.10/site-packages",
+        "/home/odil/ros2_ws/install/go2_interfaces/local/lib/python3.10/dist-packages",
+        "/home/odil/ros2_ws/build/coco_detector",
+        "/home/odil/ros2_ws/install/coco_detector/lib/python3.10/site-packages",
+        "/opt/ros/humble/lib/python3.10/site-packages",
+        "/opt/ros/humble/local/lib/python3.10/dist-packages"
+    ],
+    "python.analysis.extraPaths": [
+        "/home/odil/ros2_ws/build/my_rqt_plugin",
+        "/home/odil/ros2_ws/install/my_rqt_plugin/lib/python3.10/site-packages",
+        "/home/odil/ros2_ws/build/go2_robot_sdk",
+        "/home/odil/ros2_ws/install/go2_robot_sdk/lib/python3.10/site-packages",
+        "/home/odil/ros2_ws/install/unitree_go/local/lib/python3.10/dist-packages",
+        "/home/odil/ros2_ws/install/insta360_driver/lib/python3.10/site-packages",
+        "/home/odil/ros2_ws/install/insta360_cam/lib/python3.10/site-packages",
+        "/home/odil/ros2_ws/install/go2_interfaces/local/lib/python3.10/dist-packages",
+        "/home/odil/ros2_ws/build/coco_detector",
+        "/home/odil/ros2_ws/install/coco_detector/lib/python3.10/site-packages",
+        "/opt/ros/humble/lib/python3.10/site-packages",
+        "/opt/ros/humble/local/lib/python3.10/dist-packages"
+    ]
+}
