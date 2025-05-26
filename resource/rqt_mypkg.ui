@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Form</class>
- <widget class="QWidget" name="Form">
+ <class>RobotDashboard</class>
+ <widget class="QWidget" name="RobotDashboard">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>318</width>
-    <height>500</height>
+    <width>818</width>
+    <height>618</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -16,24 +16,9 @@
     <verstretch>0</verstretch>
    </sizepolicy>
   </property>
-  <property name="minimumSize">
-   <size>
-    <width>300</width>
-    <height>500</height>
-   </size>
-  </property>
-  <property name="maximumSize">
-   <size>
-    <width>318</width>
-    <height>10000</height>
-   </size>
-  </property>
-  <property name="windowTitle">
-   <string>Obo Dog Hardware Interface</string>
-  </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
-    <widget class="QPushButton" name="pushButton">
+    <widget class="QTabWidget" name="tabWidget">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
        <horstretch>0</horstretch>
@@ -42,89 +27,535 @@
      </property>
      <property name="minimumSize">
       <size>
-       <width>300</width>
-       <height>50</height>
+       <width>800</width>
+       <height>600</height>
       </size>
      </property>
-     <property name="font">
-      <font>
-       <weight>75</weight>
-       <bold>true</bold>
-      </font>
+     <property name="currentIndex">
+      <number>0</number>
      </property>
-     <property name="text">
-      <string>Get the Status!</string>
-     </property>
-    </widget>
-   </item>
-   <item>
-    <widget class="QLabel" name="statusLabel">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="text">
-      <string>Obo Dog HMI!</string>
-     </property>
-    </widget>
-   </item>
-   <item>
-    <widget class="QCheckBox" name="enableCheck">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="text">
-      <string>Enable visual mode</string>
-     </property>
-    </widget>
-   </item>
-   <item>
-    <widget class="QLabel" name="imageLabel">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="minimumSize">
-      <size>
-       <width>300</width>
-       <height>200</height>
-      </size>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">border: 1px solid gray; background-color: #f9f9f9;</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignCenter</set>
-     </property>
-    </widget>
-   </item>
-   <item>
-    <widget class="QPushButton" name="loadImageButton">
-     <property name="minimumSize">
-      <size>
-       <width>40</width>
-       <height>50</height>
-      </size>
-     </property>
-     <property name="maximumSize">
-      <size>
-       <width>300</width>
-       <height>16777215</height>
-      </size>
-     </property>
-     <property name="layoutDirection">
-      <enum>Qt::LeftToRight</enum>
-     </property>
-     <property name="text">
-      <string>Select Image to Display</string>
-     </property>
+     <widget class="QWidget" name="tab_control">
+      <attribute name="title">
+       <string>Control</string>
+      </attribute>
+      <layout class="QHBoxLayout" name="horizontalLayout_control">
+       <item>
+        <widget class="QGroupBox" name="tabox_teleop">
+         <property name="title">
+          <string>Obo Dog Dashboard</string>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_teleop">
+          <item>
+           <widget class="QGroupBox" name="teleop_group">
+            <property name="minimumSize">
+             <size>
+              <width>8</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="title">
+             <string>Control Panel</string>
+            </property>
+            <widget class="QWidget" name="widget_2" native="true">
+             <property name="geometry">
+              <rect>
+               <x>330</x>
+               <y>30</y>
+               <width>401</width>
+               <height>441</height>
+              </rect>
+             </property>
+             <layout class="QFormLayout" name="formLayout">
+              <item row="0" column="0" colspan="2">
+               <widget class="QGroupBox" name="groupBox_speed">
+                <property name="title">
+                 <string>Speed Controls</string>
+                </property>
+                <layout class="QFormLayout" name="formLayout_speed">
+                 <item row="0" column="0">
+                  <widget class="QLabel" name="label_speed_x">
+                   <property name="text">
+                    <string>Speed X</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="0" column="1">
+                  <widget class="QSlider" name="slider_speed_x">
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="1" column="0">
+                  <widget class="QLabel" name="label_turn_speed">
+                   <property name="text">
+                    <string>Turn Speed (Z)</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="1" column="1">
+                  <widget class="QSlider" name="slider_speed_y">
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="2" column="0">
+                  <widget class="QLabel" name="label_speed_y">
+                   <property name="text">
+                    <string>Speed Y</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="2" column="1">
+                  <widget class="QSlider" name="slider_turn_speed">
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="4" column="0">
+                  <widget class="QLabel" name="label_speed_value">
+                   <property name="text">
+                    <string>Speed</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="4" column="1">
+                  <widget class="QSpinBox" name="spinBox_speed">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+              <item row="1" column="0">
+               <widget class="QGroupBox" name="groupBox_posture">
+                <property name="title">
+                 <string>Posture</string>
+                </property>
+                <layout class="QHBoxLayout" name="horizontalLayout_posture">
+                 <item>
+                  <widget class="QPushButton" name="pushButton_stand">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="text">
+                    <string>Stand Up</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QPushButton" name="pushButton_crouch">
+                   <property name="text">
+                    <string>Crouch</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+              <item row="2" column="0">
+               <widget class="QGroupBox" name="groupBox_actions">
+                <property name="title">
+                 <string>Actions</string>
+                </property>
+                <layout class="QHBoxLayout" name="horizontalLayout_actions">
+                 <item>
+                  <widget class="QPushButton" name="pushButton_sit">
+                   <property name="text">
+                    <string>Sit</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QPushButton" name="pushButton_jump">
+                   <property name="text">
+                    <string>Jump</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QPushButton" name="pushButton_nod">
+                   <property name="text">
+                    <string>Nod</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QPushButton" name="pushButton_greet">
+                   <property name="text">
+                    <string>Greet</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+              <item row="3" column="0" colspan="2">
+               <widget class="QGroupBox" name="groupBox_gait">
+                <property name="title">
+                 <string>Gait Pattern</string>
+                </property>
+                <layout class="QVBoxLayout" name="verticalLayout_gait">
+                 <item>
+                  <widget class="QRadioButton" name="radio_walking">
+                   <property name="text">
+                    <string>Walking</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QRadioButton" name="radio_running">
+                   <property name="text">
+                    <string>Running</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QRadioButton" name="radio_climb_up">
+                   <property name="text">
+                    <string>Climb Up</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QRadioButton" name="radio_climb_down">
+                   <property name="text">
+                    <string>Climb Down</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+            <widget class="QFrame" name="frame">
+             <property name="geometry">
+              <rect>
+               <x>40</x>
+               <y>40</y>
+               <width>251</width>
+               <height>201</height>
+              </rect>
+             </property>
+             <property name="frameShape">
+              <enum>QFrame::StyledPanel</enum>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Raised</enum>
+             </property>
+             <widget class="QPushButton" name="pushButton_up">
+              <property name="geometry">
+               <rect>
+                <x>90</x>
+                <y>30</y>
+                <width>71</width>
+                <height>31</height>
+               </rect>
+              </property>
+              <property name="text">
+               <string>▲</string>
+              </property>
+             </widget>
+             <widget class="QPushButton" name="pushButton_left">
+              <property name="geometry">
+               <rect>
+                <x>0</x>
+                <y>80</y>
+                <width>71</width>
+                <height>31</height>
+               </rect>
+              </property>
+              <property name="text">
+               <string>◄</string>
+              </property>
+             </widget>
+             <widget class="QPushButton" name="pushButton_right">
+              <property name="geometry">
+               <rect>
+                <x>180</x>
+                <y>80</y>
+                <width>71</width>
+                <height>31</height>
+               </rect>
+              </property>
+              <property name="text">
+               <string>►</string>
+              </property>
+             </widget>
+             <widget class="QPushButton" name="pushButton_down">
+              <property name="geometry">
+               <rect>
+                <x>90</x>
+                <y>130</y>
+                <width>71</width>
+                <height>26</height>
+               </rect>
+              </property>
+              <property name="text">
+               <string>▼</string>
+              </property>
+             </widget>
+            </widget>
+            <widget class="QCheckBox" name="lightCheckBox">
+             <property name="geometry">
+              <rect>
+               <x>40</x>
+               <y>290</y>
+               <width>92</width>
+               <height>23</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string>Lights</string>
+             </property>
+            </widget>
+            <widget class="QLabel" name="lights_top">
+             <property name="geometry">
+              <rect>
+               <x>160</x>
+               <y>290</y>
+               <width>67</width>
+               <height>17</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string>Pending</string>
+             </property>
+            </widget>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tab_robot_states">
+      <attribute name="title">
+       <string>Robot States</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout_states">
+       <item row="0" column="0">
+        <widget class="QFrame" name="frame_2">
+         <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
+         </property>
+         <widget class="QGroupBox" name="groupBox">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>30</y>
+            <width>341</width>
+            <height>491</height>
+           </rect>
+          </property>
+          <property name="title">
+           <string>Critical Data</string>
+          </property>
+          <widget class="QFrame" name="frame_3">
+           <property name="geometry">
+            <rect>
+             <x>20</x>
+             <y>40</y>
+             <width>301</width>
+             <height>231</height>
+            </rect>
+           </property>
+           <property name="frameShape">
+            <enum>QFrame::StyledPanel</enum>
+           </property>
+           <property name="frameShadow">
+            <enum>QFrame::Raised</enum>
+           </property>
+           <widget class="QLabel" name="label">
+            <property name="geometry">
+             <rect>
+              <x>10</x>
+              <y>40</y>
+              <width>121</width>
+              <height>17</height>
+             </rect>
+            </property>
+            <property name="text">
+             <string>Voltage</string>
+            </property>
+           </widget>
+           <widget class="Line" name="line">
+            <property name="geometry">
+             <rect>
+              <x>130</x>
+              <y>30</y>
+              <width>20</width>
+              <height>191</height>
+             </rect>
+            </property>
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+           </widget>
+           <widget class="QLabel" name="label_2">
+            <property name="geometry">
+             <rect>
+              <x>10</x>
+              <y>0</y>
+              <width>91</width>
+              <height>17</height>
+             </rect>
+            </property>
+            <property name="text">
+             <string>BMS State</string>
+            </property>
+           </widget>
+           <widget class="QLabel" name="label_3">
+            <property name="geometry">
+             <rect>
+              <x>160</x>
+              <y>40</y>
+              <width>91</width>
+              <height>20</height>
+             </rect>
+            </property>
+            <property name="text">
+             <string>voltage_top</string>
+            </property>
+           </widget>
+           <widget class="QLabel" name="label_4">
+            <property name="geometry">
+             <rect>
+              <x>10</x>
+              <y>70</y>
+              <width>121</width>
+              <height>17</height>
+             </rect>
+            </property>
+            <property name="text">
+             <string>Current</string>
+            </property>
+           </widget>
+           <widget class="QLabel" name="label_5">
+            <property name="geometry">
+             <rect>
+              <x>160</x>
+              <y>70</y>
+              <width>91</width>
+              <height>20</height>
+             </rect>
+            </property>
+            <property name="text">
+             <string>current_top</string>
+            </property>
+           </widget>
+           <widget class="QLabel" name="label_6">
+            <property name="geometry">
+             <rect>
+              <x>10</x>
+              <y>100</y>
+              <width>121</width>
+              <height>17</height>
+             </rect>
+            </property>
+            <property name="text">
+             <string>Temperature</string>
+            </property>
+           </widget>
+           <widget class="QLabel" name="label_7">
+            <property name="geometry">
+             <rect>
+              <x>160</x>
+              <y>100</y>
+              <width>91</width>
+              <height>20</height>
+             </rect>
+            </property>
+            <property name="text">
+             <string>temp_top</string>
+            </property>
+           </widget>
+          </widget>
+         </widget>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tab_camera">
+      <attribute name="title">
+       <string>Camera</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_camera">
+       <item>
+        <widget class="QGroupBox" name="groupBox_frontCamera">
+         <property name="title">
+          <string>Front Camera</string>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_frontCam">
+          <item>
+           <widget class="QFrame" name="frame_frontCamera">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="frameShape">
+             <enum>QFrame::NoFrame</enum>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="groupBox_backCamera">
+         <property name="title">
+          <string>Back Camera</string>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_backCam">
+          <item>
+           <widget class="QFrame" name="frame_backCamera">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="frameShape">
+             <enum>QFrame::NoFrame</enum>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tab_planner">
+      <attribute name="title">
+       <string>Planner</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_planner">
+       <item>
+        <widget class="QGroupBox" name="groupBox_planner">
+         <property name="title">
+          <string>Planner</string>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_plannerContent"/>
+        </widget>
+       </item>
+      </layout>
+     </widget>
     </widget>
    </item>
   </layout>

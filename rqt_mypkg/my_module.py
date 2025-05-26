@@ -7,6 +7,7 @@ import os
 from ament_index_python.packages import get_package_share_directory
 
 from std_msgs.msg import String
+from geometry_msgs.msg import Twist
 
 
 class MyPlugin(Plugin):
@@ -41,49 +42,71 @@ class MyWidget(QWidget):
         self.setObjectName('MyWidget')
 
         # Access UI elements
-        self.button = self.findChild(QWidget, 'pushButton')
-        self.label = self.findChild(QWidget, 'statusLabel')
-        self.image_label = self.findChild(QWidget, 'imageLabel')
-        self.checkbox = self.findChild(QWidget, 'enableCheck')
-        self.load_image_button = self.findChild(QWidget, 'loadImageButton')
+        self.button = self.findChild(QWidget, 'pushButton_up')
+        self.checkbox = self.findChild(QWidget, 'lightCheckBox')
+        self.current_top_label = self.findChild(QWidget, 'label_5')
+        self.voltage_top_label = self.findChild(QWidget, 'label_3')
+        self.lights_top_label = self.findChild(QWidget, 'lights_top')
+
 
         # Connect UI actions
-        if self.button:
-            self.button.clicked.connect(self.on_button_click)
+     
         if self.checkbox:
             self.checkbox.stateChanged.connect(self.on_checkbox_toggle)
-        if self.load_image_button:
-            self.load_image_button.clicked.connect(self.select_image)
+   
 
-        # ROS subscription
-        self.node.create_subscription(
-            String,
-            '/chatter',
-            self.chatter_callback,
-            10
+        # ROS subscriptions
+        self._ros_subs = []
+        self._ros_subs.append(
+            self.node.create_subscription(
+                String,
+                '/chatter',
+                self.chatter_callback,
+                10
+            )
+        )
+        self._ros_subs.append(
+            self.node.create_subscription(
+                Twist,
+                '/turtle1/cmd_vel',
+                self.cmd_vel_callback,
+                10
+            )
+        )
+        self._ros_subs.append(
+            self.node.create_subscription(
+                String,  # Replace with actual message type if available
+                '/turtle1/rotate_absolute',
+                self.rotate_status_callback,
+                10
+            )
         )
 
-    def on_button_click(self):
-        self.label.setText("Button Clicked!")
 
     def on_checkbox_toggle(self, state):
         if state == Qt.Checked:
-            self.label.setText("Visual mode enabled")
+            self.lights_top_label.setText("Lights on")
         else:
-            self.label.setText("Visual mode disabled")
+            self.lights_top_label.setText("Lights off")
 
-    def select_image(self):
-        file_path, _ = QFileDialog.getOpenFileName(
-            self, "Select Image File", "", "Images (*.png *.jpg *.jpeg *.bmp *.gif)"
-        )
-        if file_path:
-            pixmap = QPixmap(file_path)
-            if not pixmap.isNull():
-                self.image_label.setPixmap(pixmap.scaled(
-                    self.image_label.size(), Qt.KeepAspectRatio, Qt.SmoothTransformation))
-                self.label.setText("Image loaded successfully!")
-            else:
-                self.label.setText("Failed to load image.")
+
 
     def chatter_callback(self, msg):
-        self.label.setText(f"Received: {msg.data}")
+        self.label_7.setText(f"Received: {msg.data}")
+
+    def cmd_vel_callback(self, msg):
+        # Update current_top_label with linear.x (as current)
+        if self.current_top_label:
+            self.current_top_label.setText(f"{msg.linear.x:.2f}")
+        # Update voltage_top_label with angular.z (as voltage)
+    
+
+    def rotate_status_callback(self, msg):
+        # Display rotate status in voltage_top_label (or elsewhere as needed)
+        if self.voltage_top_label:
+            self.voltage_top_label.setText(f"R {msg.data}")
+
+    def closeEvent(self, event):
+        # Explicitly remove references to subscriptions to help cleanup
+        self._ros_subs.clear()
+        super().closeEvent(event)
